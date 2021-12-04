@@ -25,3 +25,5 @@ Counts[digits] = {7, 5, 8, 7, 5}
 Gamma = 10110
 
 Epsilon = ~Gamma = 01001
+### Part 2
+Now here some interesting work got done, and by interesting I mean I think I overcomplicated the solution. The naive solution would be to calculate frequency, eliminate elements not fitting the rule, recalculate frequency, etc. etc. Without busting out a pen and paper I believe this would reduce down to a O(N\*M!) complexity where N is the number of elements and M is their length. To avoid this lame complexity I instead decided to use a Huffman tree. Construction of the tree should be O(N\*M\) and searching the tree is O(M). Each parent contains the number of 0 children or 1 children which takes care of the frequency calculation.
