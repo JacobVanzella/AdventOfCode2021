@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 
     bool forward, upward;
     int count = 0, lineLen = 0;
-    int map[SZ][SZ] = {0};
+    int map[SZ][SZ] = {0}; // map[Y-cord][X-cord]
 
     while (!input.eof())
     {
@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
         std::replace(inputStr.begin(), inputStr.end(), '>', ' ');
         std::stringstream strStream(inputStr);
 
+        // First is X-cord, Second is Y-cord
         strStream >> tmpA.first;
         strStream >> tmpA.second;
         strStream >> tmpB.first;
