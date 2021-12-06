@@ -31,3 +31,7 @@ Now here some interesting work got done, and by interesting I mean I think I ove
 ## Day 4:
 ### Part 1 & 2
 Nothing too exciting here. I had considered using a hashmap solution, but I decided to save myself a little thinking and went the brute force route of checking every value on each board until a/last winner was found.
+
+## Day 5:
+### Part 1 & 2
+Nothing fancy, just careful attention to direction. Only challenging part is keeping track of which way is up and down in part 2.
