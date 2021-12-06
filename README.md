@@ -35,3 +35,7 @@ Nothing too exciting here. I had considered using a hashmap solution, but I deci
 ## Day 5:
 ### Part 1 & 2
 Nothing fancy, just careful attention to direction. Only challenging part is keeping track of which way is up and down in part 2.
+
+## Day 6:
+### Part 1 & 2
+Again, nothing fancy. Create an array of integers 9 long and keep track of the number of fish where the index of the array is the fishes internal counter. There is a cute trick you could do with a rotating sentinel value, and it would be worth it if you had to keep track of many numbers, but with so few it's easier to just write a simple array shifting algorithm. For part 2 make sure to use `long long`.

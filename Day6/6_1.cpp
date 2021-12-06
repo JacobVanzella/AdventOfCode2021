@@ -15,17 +15,17 @@ int main(int argc, char *argv[])
         input.ignore(1);
         fishCounts[count]++;
     }
-    
+
     // Let the fishies breed
     for (int i = 1; i <= 80; i++)
     {
         count = fishCounts[0];
         for (int j = 0; j < 8; j++)
-            fishCounts[j] = fishCounts[j+1];
+            fishCounts[j] = fishCounts[j + 1];
         fishCounts[6] += count;
         fishCounts[8] = count;
     }
-    
+
     // Harvest the fishies
     fishSum = 0;
     for (int i : fishCounts)
