@@ -1,7 +1,6 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <math.h>
 
 struct Node
 {
@@ -22,7 +21,7 @@ int main(int argc, char *argv[])
     int cols = str.size(), rows = 0;
     int o2 = 0, co2 = 0;
 
-    // Count up numbers and insert into binary search tree
+    // Create Huffman Tree
     do
     {
         rows++;
@@ -50,17 +49,18 @@ int main(int argc, char *argv[])
         }
     } while (input >> str);
 
-    // Search binary tree based on gamma criteria
-    itr = &head;
-    itr2 = &head;
+    // Search Huffman Tree (surely writing this recursively would be more compact . . . )
+    itr = &head;    // Finds O2 number
+    itr2 = &head;   // Finds CO2 number
     for (int i = 0; i < cols; i++)
     {
+        // Iterate over maximal values
         more1 = itr->ones >= itr->zeros;
         if (more1)
         {
             if (itr->one != nullptr)
             {
-                o2 += pow(2, cols - i - 1);
+                o2 += 1<<(cols - i - 1);
                 itr = itr->one;
             }
             else
@@ -76,17 +76,18 @@ int main(int argc, char *argv[])
             }
             else
             {
-                o2 += pow(2, cols - i - 1);
+                o2 += 1<<(cols - i - 1);
                 itr = itr->one;
             }
         }
 
+        // Iterate over minimal values
         more1 = itr2->ones >= itr2->zeros;
         if (!more1)
         {
             if (itr2->one != nullptr)
             {
-                co2 += pow(2, cols - i - 1);
+                co2 += 1<<(cols - i - 1);
                 itr2 = itr2->one;
             }
             else
@@ -102,7 +103,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                co2 += pow(2, cols - i - 1);
+                co2 += 1<<(cols - i - 1);
                 itr2 = itr2->one;
             }
         }

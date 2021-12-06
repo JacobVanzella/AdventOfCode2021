@@ -17,7 +17,7 @@ Very little to talk about here, the only cute trick I used is to compare the fir
 
 ## Day 3:
 ### Part 1
-By counting the frequency of occurences of the number 1 in each position we generate a representation of Gamma. For each digit greater than or equal to 4 replace with a 1, else a 0, gives the binary representation of Gamma. This is a big endian binary number who's complement is epsilon. The rest follows simply.
+By counting the frequency of occurences of the number 1 in each position we generate a representation of Gamma. For each digit greater than or equal to 1/2 the number of elements replace with a 1, else a 0, gives the binary representation of Gamma. This is a big endian binary number who's complement is Epsilon. The rest follows simply.
 
 e.g.
 Counts[digits] = {7, 5, 8, 7, 5}
@@ -27,3 +27,7 @@ Gamma = 10110
 Epsilon = ~Gamma = 01001
 ### Part 2
 Now here some interesting work got done, and by interesting I mean I think I overcomplicated the solution. The naive solution would be to calculate frequency, eliminate elements not fitting the rule, recalculate frequency, etc. etc. Without busting out a pen and paper I believe this would reduce down to a O(N\*M!) complexity where N is the number of elements and M is their length. To avoid this lame complexity I instead decided to use a Huffman tree. Construction of the tree should be O(N\*M\) and searching the tree is O(M). Each parent contains the number of 0 children or 1 children which takes care of the frequency calculation.
+
+## Day 4:
+### Part 1 & 2
+Nothing too exciting here. I had considered using a hashmap solution, but I decided to save myself a little thinking and went the brute force route of checking every value on each board until a/last winner was found.
