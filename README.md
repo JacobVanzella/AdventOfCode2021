@@ -9,7 +9,7 @@ This repository contains my solutions for the 2021 [Advent of Code](https://adve
 ### Part 1
 The intro puzzle is as simple as a counting while loop, nothing special here.
 ### Part 2
-Part two isn't much more difficult than part one, but there is a cute technique to store these rotating values. By using an array of length `N` where `N` is the window size, we can use an index mod `N` to track a rotating position inside the array. This means we don't need to shift the values on each iteration.
+Part two isn't much more difficult than part one, but there is a cute technique to store these rotating values. By using an array of length $N$ where $N$ is the window size, we can use an index mod $N$ to track a rotating position inside the array. This means we don't need to shift the values on each iteration.
 
 ## Day 2:
 ### Part 1 & 2
@@ -17,7 +17,7 @@ Very little to talk about here, the only cute trick I used is to compare the fir
 
 ## Day 3:
 ### Part 1
-By counting the frequency of occurences of the number 1 in each position we generate a representation of Gamma. For each digit greater than or equal to 1/2 the number of elements replace with a 1, else a 0, gives the binary representation of Gamma. This is a big endian binary number who's complement is Epsilon. The rest follows simply.
+By counting the frequency of occurences of the number $1$ in each position we generate a representation of Gamma. For each digit greater than or equal to $1/2$ the number of elements replace with a $1$, else a $0$, gives the binary representation of Gamma. This is a big endian binary number who's complement is Epsilon. The rest follows simply.
 
 e.g.
 ```
@@ -25,8 +25,9 @@ Counts[digits] = {7, 5, 8, 7, 5}
 Gamma = 10110
 Epsilon = ~Gamma = 01001
 ```
+
 ### Part 2
-Now here some interesting work got done, and by interesting I mean I think I overcomplicated the solution. The naive solution would be to calculate frequency, eliminate elements not fitting the rule, recalculate frequency, etc. etc. Without busting out a pen and paper I believe this would reduce down to a `O(N*M!)` complexity where `N` is the number of elements and `M` is their length. To avoid this lame complexity I instead decided to use a Huffman tree. Construction of the tree should be `O(N*M)` and searching the tree is `O(M)`. Each parent contains the number of 0 children or 1 children which takes care of the frequency calculation.
+Now here some interesting work got done, and by interesting I mean I think I overcomplicated the solution. The naive solution would be to calculate frequency, eliminate elements not fitting the rule, recalculate frequency, etc. etc. Without busting out a pen and paper I believe this would reduce down to a $O(N \times M!)$ complexity where $N$ is the number of elements and $M$ is their length. To avoid this lame complexity I instead decided to use a Huffman tree. Construction of the tree should be $O(N \times M)$ and searching the tree is $O(M)$. Each parent contains the number of $0$ children or $1$ children which takes care of the frequency calculation.
 
 ## Day 4:
 ### Part 1 & 2
@@ -38,12 +39,19 @@ Nothing fancy, just careful attention to direction. Only challenging part is kee
 
 ## Day 6:
 ### Part 1 & 2
-Again, nothing fancy. Create an array of integers 9 long and keep track of the number of fish where the index of the array is the fishes internal counter. There is a cute trick you could do with a rotating sentinel value, and it would be worth it if you had to keep track of many numbers, but with so few it's easier to just write a simple array shifting algorithm. For part 2 make sure to use `long long`.
+Again, nothing fancy. Create an array of integers $9$ long and keep track of the number of fish where the index of the array is the fishes internal counter. There is a cute trick you could do with a rotating sentinel value, and it would be worth it if you had to keep track of many numbers, but with so few it's easier to just write a simple array shifting algorithm. For part 2 make sure to use `long long`.
 
 ## Day 7:
 ### Part 1
-What have: A collection of points P<sub>i</sub> = V where V is the value of the point. There can be multiples of a single point value.
-The number of points with a given value is the cardinality of the point |P_i|
-What we want: To move all points such that their value is equal.
-What it costs: Cost of movement C = |V_d - V_p_i| * |P_i|
-Minimize Cost
+I thought long and hard about an efficient method of solving day 7, but I couldn't come up with anything better than exploiting the fact that the problem approaches the solution in a monotonically decreasing fashion from its left and right. Thus we can calculate each destination starting at 0 and increasing in steps of 1, once the cost begins to increase we know the last value is the minimum. But in the worst case we would have to iterate all the way to the last position. If anyone knows a more efficient method feel free to shoot me a message or something. :)
+
+<b>What have:</b> A collection of points $P_i = V$ where $V$ is the value (absolute position) of the point. There can be multiple points with a single value. The number of points with a given value is the cardinality of the point $|P_i|$
+
+<b>What we want:</b> To move all points such that their value is equal.
+
+<b>What it costs:</b> Cost of movement $C = |V_{dest} - V_{p_i}| \times |P_i|$
+
+### Part 2
+The problem is fundamentally the same, only an adjustment to the cost calculation needs to be made.
+
+Cost of movement $C = \Sigma_{I=0}^{|V_{dest} - V_{p_i}|}(I) \times |P_i|$
