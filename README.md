@@ -1,7 +1,7 @@
 # Advent of Code 2021
 ## Solutions by Jacob Vanzella - Written in C++
 
-This repository contains my solutions for the 2021 [Advent of Code](https://adventofcode.com/) coding challenge in C++.
+This repository contains my solutions for the 2021 [Advent of Code](https://adventofcode.com/) coding challenge in C++. Days are split into two parts, each part has its own .cpp file. Parts with a BONUS.cpp are ones I revisited and re-wrote because I thought of a more efficient or beautiful solution after the fact.
 
 ## Fundamental Concepts
 
@@ -27,7 +27,7 @@ Epsilon = ~Gamma = 01001
 ```
 
 ### Part 2
-Now here some interesting work got done, and by interesting I mean I think I overcomplicated the solution. The naive solution would be to calculate frequency, eliminate elements not fitting the rule, recalculate frequency, etc. etc. Without busting out a pen and paper I believe this would reduce down to a `O(N*M!)` complexity where `N` is the number of elements and `M` is their length. To avoid this lame complexity I instead decided to use a Huffman tree. Construction of the tree should be `O(N*M)` and searching the tree is `O(M)`. Each parent contains the number of 0 children or 1 children which takes care of the frequency calculation.
+Now here some interesting work got done, and by interesting I mean I think I overcomplicated the solution. The naive solution would be to calculate frequency, eliminate elements not fitting the rule, recalculate frequency, etc. etc. Without busting out a pen and paper I believe this would reduce down to a `O(N*M!)` complexity where `N` is the number of elements and `M` is their length. To avoid this lame complexity I instead decided to use a trie. Construction of the trie should be `O(N*M)` and searching the trie is `O(M)`. Each parent contains the number of 0 children or 1 children which takes care of the frequency calculation.
 
 ## Day 4:
 ### Part 1 & 2
@@ -43,7 +43,7 @@ Again, nothing fancy. Create an array of integers 9 long and keep track of the n
 
 ## Day 7:
 ### Part 1
-I thought long and hard about an efficient method of solving day 7, but I couldn't come up with anything better than exploiting the fact that the problem approaches the solution in a monotonically decreasing fashion from its left and right. Thus we can calculate each destination starting at 0 and increasing in steps of 1, once the cost begins to increase we know the last value is the minimum. But in the worst case we would have to iterate all the way to the last position. If anyone knows a more efficient method feel free to shoot me a message or something. :)
+(Note: Apparently GitHub doesn't support LaTeX? Leaving the equations in protest.)
 
 <b>What have:</b> A collection of points $P_i = V$ where $V$ is the value (absolute position) of the point. There can be multiple points with a single value. The number of points with a given value is the cardinality of the point $|P_i|$
 
@@ -55,3 +55,27 @@ I thought long and hard about an efficient method of solving day 7, but I couldn
 The problem is fundamentally the same, only an adjustment to the cost calculation needs to be made.
 
 Cost of movement $C = \Sigma_{I=0}^{|V_{dest} - V_{p_i}|}(I) \times |P_i|$
+
+### Part 2 BONUS
+In my initial solve of parts 1 and 2 I used a brute force approach with a small optimization using the monotanicity of the function to the left and right of the solution. This optimization however doesn't really improve the worst case performance which is O(n<sup>3</sup>) for part 2. After some thought I realized that a factor of n could be eliminated in part 2 by using the [arithmetic progression formula](https://en.wikipedia.org/wiki/Arithmetic_progression). Shortly after I realized that another factor of n could be reduced to lg(n) by using a binary search style gradient descent. Right before implementing this improvement however I mentioned this approach to a friend and he blew my solution out of the water. Find the mean value of the points, this value is ±1 from the minimum solution. Then just test the integer values to the either side of the mean. This results in a O(n) running time! Wow. Excellent insight Phil.
+
+Resuls of a timing test, the proof is in the pudding.
+```
+time ./7_2
+
+Ans. 96744904 , Dest: 475
+
+real    0m2.195s
+user    0m2.189s
+sys     0m0.000s
+--------------------------
+time ./7_2_BONUS
+
+Ans. 96744904 , Dest: 475
+
+real    0m0.009s
+user    0m0.008s
+sys     0m0.000s
+```
+
+## Day 8:
