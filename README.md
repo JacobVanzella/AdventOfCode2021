@@ -9,7 +9,7 @@ This repository contains my solutions for the 2021 [Advent of Code](https://adve
 ### Part 1
 The intro puzzle is as simple as a counting while loop, nothing special here.
 ### Part 2
-Part two isn't much more difficult than part one, but there is a cute technique to store these rotating values. By using an array of length `N` where `N` is the window size, we can use an index mod `N` to track a rotating position inside the array. This means we don't need to shift the values on each iteration.
+Part two isn't much more difficult than part one, but there is a cute technique to store these rotating values. By using an array of length N where N is the window size, we can use an index mod N to track a rotating position inside the array. This means we don't need to shift the values on each iteration.
 
 ## Day 2:
 ### Part 1 & 2
@@ -27,7 +27,7 @@ Epsilon = ~Gamma = 01001
 ```
 
 ### Part 2
-Now here some interesting work got done, and by interesting I mean I think I overcomplicated the solution. The naive solution would be to calculate frequency, eliminate elements not fitting the rule, recalculate frequency, etc. etc. Without busting out a pen and paper I believe this would reduce down to a `O(N*M!)` complexity where `N` is the number of elements and `M` is their length. To avoid this lame complexity I instead decided to use a trie. Construction of the trie should be `O(N*M)` and searching the trie is `O(M)`. Each parent contains the number of 0 children or 1 children which takes care of the frequency calculation.
+Now here some interesting work got done, and by interesting I mean I think I overcomplicated the solution. The naive solution would be to calculate frequency, eliminate elements not fitting the rule, recalculate frequency, etc. etc. Without busting out a pen and paper I believe this would reduce down to a O(N*M!) complexity where N is the number of elements and M is their length. To avoid this lame complexity I instead decided to use a [trie](https://en.wikipedia.org/wiki/Trie). Construction of the trie should be O(N*M) and searching the trie is O(M). Each parent contains the number of 0 children or 1 children which takes care of the frequency calculation.
 
 ## Day 4:
 ### Part 1 & 2
@@ -57,7 +57,7 @@ The problem is fundamentally the same, only an adjustment to the cost calculatio
 Cost of movement $C = \Sigma_{I=0}^{|V_{dest} - V_{p_i}|}(I) \times |P_i|$
 
 ### Part 2 BONUS
-In my initial solve of parts 1 and 2 I used a brute force approach with a small optimization using the monotanicity of the function to the left and right of the solution. This optimization however doesn't really improve the worst case performance which is O(n<sup>3</sup>) for part 2. After some thought I realized that a factor of n could be eliminated in part 2 by using the [arithmetic progression formula](https://en.wikipedia.org/wiki/Arithmetic_progression). Shortly after I realized that another factor of n could be reduced to lg(n) by using a binary search style gradient descent. Right before implementing this improvement however I mentioned this approach to a friend and he blew my solution out of the water. Find the mean value of the points, this value is ±1 from the minimum solution. Then just test the integer values to the either side of the mean. This results in a O(n) running time! Wow. Excellent insight Phil.
+In my initial solve of parts 1 and 2 I used a brute force approach with a small optimization using the monotanicity of the function to the left and right of the solution. This optimization however doesn't really improve the worst case performance which is O(n<sup>3</sup>) for part 2. After some thought I realized that a factor of n could be eliminated in part 2 by using the [arithmetic progression formula](https://en.wikipedia.org/wiki/Arithmetic_progression). Shortly after I realized that another factor of n could be reduced to lg(n) by using a binary search style [gradient descent](https://en.wikipedia.org/wiki/Gradient_descent). Right before implementing this improvement however I mentioned this approach to a friend and he blew my solution out of the water. Find the [mean value](https://en.wikipedia.org/wiki/Mean) of the points, this value is ±1 from the minimum solution. Then just test the integer values to the either side of the mean. This results in a O(n) running time! Wow. Excellent insight Phil.
 
 Resuls of a timing test, the proof is in the pudding.
 ```
@@ -79,3 +79,14 @@ sys     0m0.000s
 ```
 
 ## Day 8:
+
+## Day 9:
+### Part 1
+Nothing special here, compute the gradient at each point and find the local minimum.
+
+### Part 2
+Here I got to use my favorite algorithm, I'm always looking for an opportunity to use depth first search. Such a beautiful algorithm. DFS on each minimum and return 1 for each node visited that is not a 9.
+
+## Day 10:
+### Part 1 & 2
+Simple Push-Pop queue, we've all seen one of these. I'm not a big fan of the way I used the switch statements so liberally. There's probably a more compact way we could do this using maps or something, but this works.

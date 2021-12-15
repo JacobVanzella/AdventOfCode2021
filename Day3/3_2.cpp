@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     int cols = str.size(), rows = 0;
     int o2 = 0, co2 = 0;
 
-    // Create Huffman Tree
+    // Create Trie
     do
     {
         rows++;
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
         }
     } while (input >> str);
 
-    // Search Huffman Tree (surely writing this recursively would be more compact . . . )
+    // Search Trie (surely writing this recursively would be more compact . . . )
     itr = &head;    // Finds O2 number
     itr2 = &head;   // Finds CO2 number
     for (int i = 0; i < cols; i++)
