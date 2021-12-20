@@ -94,3 +94,7 @@ Simple Push-Pop queue, we've all seen one of these. I'm not a big fan of the way
 ## Day 11
 ### Part 1 & 2
 Another chance to use our lovely graph travesing friends, this time we use a breadth first search to iterate over the neighbouring Dumbos and increment their counts.
+
+## Day 12
+### Part 1 & 2
+More fun with graphs and the lovely depth first search. Simple apply depth first search and return a 1 when the path terminates at the end node.
