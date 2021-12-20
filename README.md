@@ -98,3 +98,7 @@ Another chance to use our lovely graph travesing friends, this time we use a bre
 ## Day 12
 ### Part 1 & 2
 More fun with graphs and the lovely depth first search. Simple apply depth first search and return a 1 when the path terminates at the end node.
+
+## Day 13
+### Part 1 & 2
+This was the most fun and interesting puzzle so far. The algorithm I used to solve the problem was to merely recalculate all values greater than the fold as follows: <b>if</b> <i>oldVal > foldLine</i> <b>then</b> <i>newVal = 2*foldLine - oldVal</i>. In the first part we just count up the remaining unique values after one fold, in the second we let the algorithm run for all folds and print the result. Quite a fun one.
