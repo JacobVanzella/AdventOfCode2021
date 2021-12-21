@@ -102,3 +102,17 @@ More fun with graphs and the lovely depth first search. Simple apply depth first
 ## Day 13
 ### Part 1 & 2
 This was the most fun and interesting puzzle so far. The algorithm I used to solve the problem was to merely recalculate all values greater than the fold as follows: <b>if</b> <i>oldVal > foldLine</i> <b>then</b> <i>newVal = 2*foldLine - oldVal</i>. In the first part we just count up the remaining unique values after one fold, in the second we let the algorithm run for all folds and print the result. Quite a fun one.
+
+Part 2 Output:
+```
+1111..11..1..1..11..1..1.111..1111..11.
+1....1..1.1.1..1..1.1.1..1..1....1.1..1
+111..1....11...1....11...111....1..1...
+1....1.11.1.1..1....1.1..1..1..1...1.11
+1....1..1.1.1..1..1.1.1..1..1.1....1..1
+1.....111.1..1..11..1..1.111..1111..111
+```
+
+## Day14
+### Part 1 & 2
+This was a fun one, and while there might be a better solution I rather enjoy mine. Create a \<char, int\> map to count the occurences of each element, a \<string, int\> map for the links of the polymere, and a \<string, string\> map to contain the substitution rules. For each link in the chain, replace its count with two new links based on the rule. The element count is then just the left element times the link count plus one element to account for the end. For part two, only change needed is to use 64-bit integers.
