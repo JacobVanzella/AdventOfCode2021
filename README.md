@@ -113,6 +113,13 @@ Part 2 Output:
 1.....111.1..1..11..1..1.111..1111..111
 ```
 
-## Day14
+## Day 14
 ### Part 1 & 2
 This was a fun one, and while there might be a better solution I rather enjoy mine. Create a \<char, int\> map to count the occurences of each element, a \<string, int\> map for the links of the polymere, and a \<string, string\> map to contain the substitution rules. For each link in the chain, replace its count with two new links based on the rule. The element count is then just the left element times the link count plus one element to account for the end. For part two, only change needed is to use 64-bit integers.
+
+## Day 15
+### Part 1
+Apply Dijkstra's algorithm and sum the risk values on the path.
+
+### Part 2
+Here Dijkstra is just way too slow to search a 500<sup>2</sup>, but I do have a lot of RAM, and 32-bit integers are pretty small things to store. Apply A* instead of Dijkstra. B)
